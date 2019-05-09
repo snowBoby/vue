@@ -38,7 +38,8 @@ vue三要素：
 		渲染页面，必须用js才能实现，因此，模板最终要转化成js函数（render函数）
     render函数：
       模板中所有信息都包含在了render函数中，this指的是vm
-    render函数里面的with的使用：
+    render函数里面的with的使用：render函数执行是返回vnode，在updatecomponent进行html渲染和diff算法对比。
+    
       var obj = {
         name:"gao",
         age:18,
@@ -50,8 +51,7 @@ vue三要素：
         console.log(obj.name);
         console.log(obj.age);
         console.log(obj.say());
-      }
-      
+      } 
       with的写法：
       function fn1(){
         with(obj){
@@ -60,6 +60,12 @@ vue三要素：
           console.log(say());
         }
       }
+      
+3、vue整个实现流程：
+   第一步：解析模板成render函数
+   第二步：响应式开始监听
+   第三步：首次渲染，显示页面，且绑定依赖
+   第四部：data属性变化，触发rerender
       
 
 
